@@ -15,10 +15,14 @@ from other days. See add_rotation_features().
 Feature groups:
   1. Time:      hour, weekday, month, day of month, days from a U.S. federal holiday.
   2. Flight:    airline, origin, destination, distance, scheduled flight time.
-  3. Rotation:  the aircraft's leg number that day, its scheduled turnaround time,
-                where it comes from, how long it has been flying that day.
-  4. Crowding:  how many flights are scheduled at the origin and destination
+  3. Crowding:  how many flights are scheduled at the origin and destination
                 in the same hour.
+  4. Rotation:  the aircraft's leg number that day, its scheduled turnaround time,
+                where it comes from, how long it has been flying that day.
+  5. Aircraft:  the aircraft's model family and age, from the FAA registry (aircraft.py).
+
+Groups 4 and 5 depend on WHICH aircraft flies the flight. They are listed in
+TAIL_BASED_FEATURES, so the model can be scored with and without them.
 
 This file uses only the general column names from load.py, so it works for any
 airline's data once that data has been translated.
@@ -28,6 +32,8 @@ Build the feature table (from the project folder):
 
 Use it afterwards:
     from features import load_features, FEATURE_COLUMNS, CATEGORICAL_FEATURES, TARGET
+
+Needs data/processed/aircraft.parquet; build it first with src\aircraft.py.
 """
 
 from __future__ import annotations
@@ -39,6 +45,7 @@ import numpy as np
 import pandas as pd
 from pandas.tseries.holiday import USFederalHolidayCalendar
 
+from aircraft import UNKNOWN_FAMILY, load_aircraft
 from load import PROCESSED_DIR, load_flights
 
 FEATURES_PARQUET = PROCESSED_DIR / "features.parquet"
@@ -52,19 +59,23 @@ ID_COLUMNS = ["flight_date", "flight_number", "tail_number"]
 # 0 if it was probably swapped in on the day (its rotation features are then usual values).
 DIAGNOSTIC_COLUMNS = ["aircraft_plan_known"]
 
-CATEGORICAL_FEATURES = ["carrier", "origin", "destination", "previous_leg_origin"]
-NUMERIC_FEATURES = [
-    # time
-    "departure_hour", "arrival_hour", "day_of_week", "month", "day_of_month", "days_from_holiday",
-    # flight
-    "distance_miles", "scheduled_elapsed_minutes",
-    # aircraft rotation
-    "aircraft_leg_number", "aircraft_legs_that_day", "turnaround_minutes",
-    "aircraft_minutes_since_first_departure",
-    # crowding
-    "origin_departures_that_hour", "destination_arrivals_that_hour",
-]
-FEATURE_COLUMNS = CATEGORICAL_FEATURES + NUMERIC_FEATURES
+FEATURE_GROUPS = {
+    "time": ["departure_hour", "arrival_hour", "day_of_week", "month", "day_of_month", "days_from_holiday"],
+    "flight": ["carrier", "origin", "destination", "distance_miles", "scheduled_elapsed_minutes"],
+    "crowding": ["origin_departures_that_hour", "destination_arrivals_that_hour"],
+    "rotation": ["previous_leg_origin", "aircraft_leg_number", "aircraft_legs_that_day",
+                 "turnaround_minutes", "aircraft_minutes_since_first_departure"],
+    "aircraft": ["aircraft_family", "aircraft_age_years"],
+}
+FEATURE_COLUMNS = [column for group in FEATURE_GROUPS.values() for column in group]
+CATEGORICAL_FEATURES = ["carrier", "origin", "destination", "previous_leg_origin", "aircraft_family"]
+NUMERIC_FEATURES = [column for column in FEATURE_COLUMNS if column not in CATEGORICAL_FEATURES]
+
+# Features that depend on which aircraft flies the flight. The flight data records the
+# aircraft that actually flew, which can differ from the plan (see add_rotation_features).
+# Score the model with and without these; without them is the conservative result.
+TAIL_BASED_FEATURES = FEATURE_GROUPS["rotation"] + FEATURE_GROUPS["aircraft"]
+SCHEDULE_ONLY_FEATURES = [column for column in FEATURE_COLUMNS if column not in TAIL_BASED_FEATURES]
 
 MAX_TURNAROUND_MINUTES = 24 * 60
 
@@ -241,6 +252,30 @@ def add_rotation_features(df: pd.DataFrame) -> pd.DataFrame:
     return df.drop(columns=[c for c in df.columns if c.startswith("_")]).sort_index()
 
 
+def add_aircraft_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Add the aircraft's model family and age, looked up by tail number in the FAA registry.
+
+    These describe the recorded aircraft. When an aircraft is swapped in on the day it is
+    usually the same type, so this is kept as recorded.
+    """
+    df = df.copy()
+    aircraft = load_aircraft().set_index("tail_number")
+    families = sorted(set(aircraft["aircraft_family"]) | {UNKNOWN_FAMILY})
+    tails = df["tail_number"].cat.categories
+    codes = df["tail_number"].cat.codes.to_numpy()
+    has_tail = codes >= 0
+
+    family_by_tail = pd.Series(tails.map(aircraft["aircraft_family"])).fillna(UNKNOWN_FAMILY).to_numpy()
+    year_by_tail = pd.Series(tails.map(aircraft["year_built"])).to_numpy(dtype="float64")
+    family = np.where(has_tail, family_by_tail[codes], UNKNOWN_FAMILY)
+    year_built = np.where(has_tail, year_by_tail[codes], np.nan)
+
+    age = pd.Series(df["flight_date"].dt.year.to_numpy() - year_built, index=df.index).clip(lower=0)
+    df["aircraft_family"] = pd.Categorical(family, categories=families)
+    df["aircraft_age_years"] = age.fillna(age.median()).astype("float32")
+    return df
+
+
 def add_crowding_features(df: pd.DataFrame) -> pd.DataFrame:
     """Count the flights scheduled at the same airport in the same hour."""
     df = df.copy()
@@ -264,8 +299,9 @@ def build_features(schedule: pd.DataFrame) -> pd.DataFrame:
     df = add_schedule_times(schedule)
     repaired = df.attrs["repaired_flight_times"]
     df = add_time_features(df)
-    df = add_rotation_features(df)
     df = add_crowding_features(df)
+    df = add_rotation_features(df)
+    df = add_aircraft_features(df)
 
     completed = (df["cancelled"] == 0) & (df["diverted"] == 0) & df[TARGET].notna()
     df = df.loc[completed, ID_COLUMNS + FEATURE_COLUMNS + DIAGNOSTIC_COLUMNS + [TARGET]].reset_index(drop=True)
