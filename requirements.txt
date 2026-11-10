@@ -8,3 +8,4 @@ matplotlib
 ipykernel
 requests
 pymongo
+nbconvert
