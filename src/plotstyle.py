@@ -28,6 +28,7 @@ MUTED = "#898781"     # axis labels, context lines
 GRID = "#e1e0d9"      # gridlines
 AXIS = "#c3c2b7"      # baseline, context bars
 BLUE = "#2a78d6"      # the accent: Delta, or the single series
+RED = "#e34948"       # the opposite of blue in up/down charts (red raises, blue lowers)
 
 # Light-to-dark blue scale for heatmaps (more = darker).
 BLUES = LinearSegmentedColormap.from_list(
@@ -84,6 +85,8 @@ def title(ax, main: str, sub: str | None = None) -> None:
 def barh_rounded(ax, positions, widths, colors, height: float = 0.6, radius_pt: float = 3) -> None:
     """Horizontal bars that start square at zero and end with slightly rounded corners.
 
+    Negative widths draw to the left of zero, for charts that show pushes up and down.
+
     Set the axis limits and tick labels BEFORE calling this, so the corner size is right.
     `colors` is one color or a list with one color per bar.
     """
@@ -97,9 +100,10 @@ def barh_rounded(ax, positions, widths, colors, height: float = 0.6, radius_pt: 
         colors = [colors] * len(widths)
 
     for pos, width, color in zip(positions, widths, colors):
-        if width <= 0:
+        if width == 0:
             continue
-        rx, ry = min(rx_full, width), min(ry_full, height / 2)
+        direction = 1 if width > 0 else -1          # negative bars grow to the left
+        rx, ry = direction * min(rx_full, abs(width)), min(ry_full, height / 2)
         bottom, top = pos - height / 2, pos + height / 2
         verts = [
             (0, bottom), (width - rx, bottom),
