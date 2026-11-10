@@ -1,0 +1,33 @@
+split,group,model,flights,late_rate,roc_auc,pr_auc,late_rate_in_riskiest_10pct,average_predicted_risk
+validate,All flights,Always on time,595195,0.2571,0.5,0.2571,0.2571,0.2124
+validate,All flights,Logistic regression,595195,0.2571,0.6835,0.4029,0.4686,0.2098
+validate,All flights,"LightGBM, schedule only",595195,0.2571,0.7047,0.4443,0.531,0.21
+validate,All flights,"LightGBM, all features",595195,0.2571,0.7156,0.4622,0.5543,0.2119
+validate,Delta,Always on time,88966,0.1772,0.5,0.1772,0.1772,0.2124
+validate,Delta,Logistic regression,88966,0.1772,0.6556,0.2819,0.3359,0.1775
+validate,Delta,"LightGBM, schedule only",88966,0.1772,0.6756,0.2989,0.3616,0.1767
+validate,Delta,"LightGBM, all features",88966,0.1772,0.6911,0.3157,0.3789,0.1763
+validate,Recorded aircraft fits the schedule,Always on time,563651,0.237,0.5,0.237,0.237,0.2124
+validate,Recorded aircraft fits the schedule,Logistic regression,563651,0.237,0.6825,0.3768,0.4396,0.2081
+validate,Recorded aircraft fits the schedule,"LightGBM, schedule only",563651,0.237,0.7053,0.421,0.5045,0.2081
+validate,Recorded aircraft fits the schedule,"LightGBM, all features",563651,0.237,0.7181,0.4422,0.5308,0.2101
+validate,Aircraft swapped in on the day,Always on time,31544,0.6168,0.5,0.6168,0.6168,0.2124
+validate,Aircraft swapped in on the day,Logistic regression,31544,0.6168,0.6459,0.7174,0.768,0.2405
+validate,Aircraft swapped in on the day,"LightGBM, schedule only",31544,0.6168,0.661,0.7399,0.8105,0.2444
+validate,Aircraft swapped in on the day,"LightGBM, all features",31544,0.6168,0.6616,0.7409,0.8089,0.2451
+test,All flights,Always on time,1206245,0.2761,0.5,0.2761,0.2761,0.2124
+test,All flights,Logistic regression,1206245,0.2761,0.6888,0.4312,0.5032,0.2108
+test,All flights,"LightGBM, schedule only",1206245,0.2761,0.7044,0.4614,0.5479,0.2101
+test,All flights,"LightGBM, all features",1206245,0.2761,0.7134,0.4762,0.5671,0.212
+test,Delta,Always on time,181238,0.2378,0.5,0.2378,0.2378,0.2124
+test,Delta,Logistic regression,181238,0.2378,0.6735,0.3707,0.4314,0.1784
+test,Delta,"LightGBM, schedule only",181238,0.2378,0.6725,0.3769,0.4481,0.1766
+test,Delta,"LightGBM, all features",181238,0.2378,0.6839,0.3922,0.4694,0.1764
+test,Recorded aircraft fits the schedule,Always on time,1136541,0.2546,0.5,0.2546,0.2546,0.2124
+test,Recorded aircraft fits the schedule,Logistic regression,1136541,0.2546,0.688,0.4042,0.4743,0.2091
+test,Recorded aircraft fits the schedule,"LightGBM, schedule only",1136541,0.2546,0.7045,0.4365,0.5204,0.2081
+test,Recorded aircraft fits the schedule,"LightGBM, all features",1136541,0.2546,0.7154,0.4545,0.543,0.2102
+test,Aircraft swapped in on the day,Always on time,69704,0.6269,0.5,0.6269,0.6269,0.2124
+test,Aircraft swapped in on the day,Logistic regression,69704,0.6269,0.6596,0.7381,0.7876,0.239
+test,Aircraft swapped in on the day,"LightGBM, schedule only",69704,0.6269,0.672,0.7536,0.8193,0.2423
+test,Aircraft swapped in on the day,"LightGBM, all features",69704,0.6269,0.6704,0.7536,0.8241,0.2426
