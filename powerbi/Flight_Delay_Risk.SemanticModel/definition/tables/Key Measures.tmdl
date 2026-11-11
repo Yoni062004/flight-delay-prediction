@@ -91,6 +91,18 @@ table 'Key Measures'
 		displayFolder: 3. What drives the risk
 		lineageTag: b85c7e11-407f-5872-a7eb-48f74276153c
 
+	/// Share of flights that arrived 15 or more minutes late in each month.
+	measure 'Late Rate by Month' = DIVIDE ( SUM ( 'Flights by Month'[Late Count] ), SUM ( 'Flights by Month'[Flight Count] ) )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: 8a41c0de-6b7f-5d12-93e4-2f0b7c5a1e66
+
+	/// The monthly late arrival rate for every airline together, ignoring the airline filter.
+	measure 'Late Rate by Month All Airlines' = CALCULATE ( [Late Rate by Month], REMOVEFILTERS ( Airline ) )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: 1f7d92b3-0c5e-5a48-b6d1-7e3a9c4f2d05
+
 	column Placeholder
 		dataType: string
 		isHidden

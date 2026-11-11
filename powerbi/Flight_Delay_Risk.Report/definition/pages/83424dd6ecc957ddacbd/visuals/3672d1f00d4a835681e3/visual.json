@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "3672d1f00d4a835681e3",
   "position": {
-    "x": 644,
+    "x": 840,
     "y": 214,
     "z": 11001,
     "height": 232,
-    "width": 620,
+    "width": 424,
     "tabOrder": 11001
   },
   "visual": {
-    "visualType": "map",
+    "visualType": "azureMap",
     "query": {
       "queryState": {
         "Category": {
@@ -30,52 +30,6 @@
               "nativeQueryRef": "Airport Label",
               "active": true,
               "displayName": "Airport"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Airport"
-                        }
-                      },
-                      "Property": "Longitude"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(Airport.Longitude)",
-              "nativeQueryRef": "Average of Longitude"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Airport"
-                        }
-                      },
-                      "Property": "Latitude"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(Airport.Latitude)",
-              "nativeQueryRef": "Average of Latitude"
             }
           ]
         },
@@ -131,10 +85,55 @@
               "displayName": "On-time arrivals"
             }
           ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Airport"
+                        }
+                      },
+                      "Property": "Longitude"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Airport.Longitude)",
+              "nativeQueryRef": "Average of Longitude"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Airport"
+                        }
+                      },
+                      "Property": "Latitude"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Airport.Latitude)",
+              "nativeQueryRef": "Average of Latitude"
+            }
+          ]
         }
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "dataPoint": [
         {
@@ -196,26 +195,110 @@
           }
         }
       ],
-      "mapStyles": [
+      "mapControls": [
         {
           "properties": {
-            "mapTheme": {
+            "defaultStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "'grayscale'"
+                  "Value": "'grayscale_light'"
+                }
+              }
+            },
+            "showStylePicker": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showNavigationControls": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showSelectionControl": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "zoom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.87D"
+                }
+              }
+            },
+            "centerLatitude": {
+              "expr": {
+                "Literal": {
+                  "Value": "37.653195999992235D"
+                }
+              }
+            },
+            "centerLongitude": {
+              "expr": {
+                "Literal": {
+                  "Value": "-96.14540109863282D"
                 }
               }
             }
           }
         }
       ],
-      "bubbles": [
+      "bubbleLayer": [
         {
           "properties": {
-            "bubbleSize": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "12L"
+                  "Value": "true"
+                }
+              }
+            },
+            "bubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8L"
+                }
+              }
+            },
+            "minBubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "maxRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14L"
+                }
+              }
+            },
+            "bubbleStrokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            },
+            "autoStrokeColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "layerPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
                 }
               }
             }
@@ -257,14 +340,15 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'contiguous U.S.: bigger bubble = more flights, darker = more late arrivals'"
+                  "Value": "'bigger = more flights, darker = more late'"
                 }
               }
             }
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
@@ -319,7 +403,102 @@
               }
             }
           ]
-        }
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "661a84e75a2e9b686d00",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Airport"
+              }
+            },
+            "Property": "Airport Label"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b92410f78e940066d820",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Airport"
+                  }
+                },
+                "Property": "Longitude"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1bb40f5f71b4d01b65d7",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Airport"
+                  }
+                },
+                "Property": "Latitude"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1d8d8cce0b0ac7e0c640",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Key Measures"
+              }
+            },
+            "Property": "Flights"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a31dcab98aaed9c220a2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Key Measures"
+              }
+            },
+            "Property": "Late Arrival Rate"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cf5a56b410a0ee93acde",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Key Measures"
+              }
+            },
+            "Property": "On-Time Arrival Rate"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

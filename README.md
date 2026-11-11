@@ -97,7 +97,8 @@ One page, built for someone who runs flights rather than models. Pick an airline
 
 - **Top row:** flights flown, on-time arrivals, the gap to all airlines, how often flights flagged as high risk really arrive late, and the model's ranking score.
 - **Late arrivals build through the day:** the airline against all airlines, by scheduled departure hour.
-- **Where the late arrivals are:** departure airports, sized by flights and shaded by late rate.
+- **Late arrivals by month:** the same comparison across the twelve months.
+- **Where the late arrivals are:** departure airports, sized by flights and shaded by late rate. This is an Azure Maps visual, which Power BI only draws for a signed-in user.
 - **Risk groups:** what the model predicted against what happened, in the test months.
 - **What drives the risk score:** the share of the model's reasoning from each group of inputs.
 
