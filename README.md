@@ -53,6 +53,7 @@ Two more findings:
 | 4. Features | [`src/features.py`](src/features.py) | Builds 20 features from the schedule |
 | 5. Train | [`src/train.py`](src/train.py) | Splits by date, trains the baselines and LightGBM, saves the scores |
 | 6. Explain | [`src/explain.py`](src/explain.py) | Computes SHAP values for 50,000 Delta flights |
+| Reporting | [`src/airports.py`](src/airports.py) | Adds each airport's name, city and map position from OurAirports (not a model input) |
 
 The notebooks walk through each step in plain language: [01 Explore](notebooks/01_explore.ipynb), [02 Features](notebooks/02_features.ipynb), [03 Model](notebooks/03_model.ipynb), [04 SHAP](notebooks/04_shap.ipynb).
 
@@ -124,6 +125,7 @@ py -3.11 -m venv .venv
 .venv\Scripts\python src\features.py
 .venv\Scripts\python src\train.py
 .venv\Scripts\python src\explain.py
+.venv\Scripts\python src\airports.py
 ```
 
 The download takes about an hour (2.2 GB). Everything after it takes about 12 minutes on a 16 GB laptop. Then open the notebooks in order.
@@ -144,6 +146,7 @@ reports/figures/    charts
 
 - [BTS Reporting Carrier On-Time Performance](https://www.transtats.bts.gov/), U.S. Bureau of Transportation Statistics
 - [FAA Releasable Aircraft Database](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download), U.S. Federal Aviation Administration. Only the registration, model and build year are used; owner details are never read.
+- [OurAirports](https://ourairports.com/data/), a public-domain list of the world's airports, for airport names and locations.
 
 ## Tools
 
