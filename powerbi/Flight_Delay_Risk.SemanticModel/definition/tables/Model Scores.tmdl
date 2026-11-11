@@ -1,0 +1,66 @@
+table 'Model Scores'
+	lineageTag: 823ff642-1e5c-587d-be3f-39b3b066c574
+
+	column Carrier
+		dataType: string
+		isHidden
+		lineageTag: 9ebd19fe-83a2-5ab0-af2d-2d6ece0ef490
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: d9f68f91-e34f-5253-8a16-3d5949dd84ce
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Test Flights'
+		dataType: int64
+		formatString: 0
+		lineageTag: d5f9b98f-5c50-52c3-9d3c-956cd545a8b6
+		summarizeBy: none
+		sourceColumn: flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Rate'
+		dataType: double
+		lineageTag: a67791c6-2fff-5b3a-bd24-37946b5f13b9
+		summarizeBy: none
+		sourceColumn: late_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROC-AUC
+		dataType: double
+		lineageTag: ad2e320a-c871-58c5-8673-0ee2c7e2f7b7
+		summarizeBy: none
+		sourceColumn: roc_auc
+
+		annotation SummarizationSetBy = Automatic
+
+	column PR-AUC
+		dataType: double
+		lineageTag: ec691a77-3cbc-56e1-a987-4695c61f5cd4
+		summarizeBy: none
+		sourceColumn: pr_auc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Model Scores' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\fact_model_scores.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"carrier", "model", "flights", "late_rate", "roc_auc", "pr_auc"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"carrier", type text}, {"model", type text}, {"flights", Int64.Type}, {"late_rate", type number}, {"roc_auc", type number}, {"pr_auc", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

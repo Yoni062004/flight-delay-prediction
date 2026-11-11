@@ -82,8 +82,11 @@ def main() -> int:
 
     airports = load_airports()
     airports["airport_label"] = airports["city"] + " (" + airports["airport"] + ")"
-    save(airports[["airport", "airport_name", "airport_label", "city", "state", "latitude", "longitude", "size"]],
-         "dim_airport.csv")
+    # The map shows the contiguous U.S. only; Alaska, Hawaii and the territories would zoom it out to the whole Pacific.
+    far_away = airports["state"].isin(["AK", "HI", "PR", "VI", "GU", "MP", "AS"])
+    airports["map_region"] = np.where(far_away, "Alaska, Hawaii and territories", "Contiguous U.S.")
+    save(airports[["airport", "airport_name", "airport_label", "city", "state", "latitude", "longitude", "size",
+                   "map_region"]], "dim_airport.csv")
 
     save(pd.DataFrame({"departure_hour": range(24), "hour_label": [hour_label(h) for h in range(24)]}), "dim_hour.csv")
 

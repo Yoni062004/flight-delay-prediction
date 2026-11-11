@@ -1,0 +1,64 @@
+table Flights
+	lineageTag: d676ca98-b99f-5ee3-9497-2a1f60cf3790
+
+	column Carrier
+		dataType: string
+		isHidden
+		lineageTag: 05dc177d-3e66-5dcc-9a2b-cf790c6a89c9
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Origin
+		dataType: string
+		isHidden
+		lineageTag: e9772731-7784-5761-b563-0a77953bb242
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Departure Hour'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ab57657f-8793-56a9-86b3-5d5bfd30d27d
+		summarizeBy: none
+		sourceColumn: departure_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Flight Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9797051a-8213-582c-8d6e-eb4244007df3
+		summarizeBy: none
+		sourceColumn: flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7c18c121-7091-5be7-a434-00ce65b87bce
+		summarizeBy: none
+		sourceColumn: late_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Flights = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\fact_flights_by_airport_hour.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"carrier", "origin", "departure_hour", "flights", "late_flights"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"carrier", type text}, {"origin", type text}, {"departure_hour", Int64.Type}, {"flights", Int64.Type}, {"late_flights", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

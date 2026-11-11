@@ -1,0 +1,90 @@
+table Airport
+	lineageTag: 3a5ba06e-5cc2-5a62-aaad-6089a9eb3ac3
+
+	column Airport
+		dataType: string
+		lineageTag: d39e7766-5c3f-50bc-8e6b-32a0d6ecc10d
+		summarizeBy: none
+		sourceColumn: airport
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Airport Name'
+		dataType: string
+		lineageTag: fe4cd450-be76-53b0-90d8-cfbecd62a82a
+		summarizeBy: none
+		sourceColumn: airport_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Airport Label'
+		dataType: string
+		lineageTag: 2236bc13-fe15-5d16-8a3f-3b2666c5b477
+		summarizeBy: none
+		sourceColumn: airport_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: a76c2c29-4ccc-5ffe-bd8a-af6ad2edb915
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 4102252e-a13f-5739-8602-cdd570631d6d
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: d30dfdc8-f0d2-5922-af03-382537a03e92
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		lineageTag: 276de5d4-c83f-5670-8662-706ca5c26412
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: string
+		lineageTag: af5c5845-be61-5fd0-a832-cc08e7442f42
+		summarizeBy: none
+		sourceColumn: size
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Map Region'
+		dataType: string
+		lineageTag: 5d0c7a52-3e1b-5f64-9a27-c41be8d0f3a6
+		summarizeBy: none
+		sourceColumn: map_region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Airport = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\dim_airport.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"airport", "airport_name", "airport_label", "city", "state", "latitude", "longitude", "size", "map_region"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"airport", type text}, {"airport_name", type text}, {"airport_label", type text}, {"city", type text}, {"state", type text}, {"latitude", type number}, {"longitude", type number}, {"size", type text}, {"map_region", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,5 @@
+expression ProjectFolder = "C:\Users\yonat\flight-delay-prediction\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: 07237b65-77cf-5834-a4d7-1080297036d3
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Flight_Delay_Risk"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "67957ee5-485f-5dde-9fea-b2bb44c8febd"
+  }
+}

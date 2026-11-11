@@ -1,0 +1,32 @@
+table Airline
+	lineageTag: 2b72726b-f516-55ea-808b-11020dc6c7bd
+
+	column Carrier
+		dataType: string
+		lineageTag: c28542ce-c968-5c4d-b878-ae201b3bfb30
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Airline
+		dataType: string
+		lineageTag: 27743270-c259-5e41-88f0-f7ec70b78839
+		summarizeBy: none
+		sourceColumn: airline
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Airline = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\dim_airline.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"carrier", "airline"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"carrier", type text}, {"airline", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

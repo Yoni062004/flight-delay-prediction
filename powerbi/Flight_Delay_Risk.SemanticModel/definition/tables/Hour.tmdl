@@ -1,0 +1,34 @@
+table Hour
+	lineageTag: 74d195c6-d90d-529a-af00-98abdc2666cb
+
+	column 'Departure Hour'
+		dataType: int64
+		formatString: 0
+		lineageTag: bf3ca49c-c06e-51dc-b86e-01909996b720
+		summarizeBy: none
+		sourceColumn: departure_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour
+		dataType: string
+		lineageTag: 60b2e57f-220a-5b66-a802-6583943f0574
+		summarizeBy: none
+		sourceColumn: hour_label
+		sortByColumn: 'Departure Hour'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Hour = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\dim_hour.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"departure_hour", "hour_label"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"departure_hour", Int64.Type}, {"hour_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

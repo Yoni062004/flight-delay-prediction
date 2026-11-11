@@ -1,0 +1,8 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../Flight_Delay_Risk.SemanticModel"
+    }
+  }
+}

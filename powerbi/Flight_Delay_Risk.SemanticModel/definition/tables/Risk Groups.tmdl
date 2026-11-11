@@ -1,0 +1,82 @@
+table 'Risk Groups'
+	lineageTag: f34b4488-c7b7-574f-ae0f-88ffbaf32ca7
+
+	column Carrier
+		dataType: string
+		isHidden
+		lineageTag: cd9eca37-ffac-599b-9e76-cdf4c1d773bb
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Group Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ca40b52c-8cbd-5003-bc98-39fc23d84112
+		summarizeBy: none
+		sourceColumn: risk_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Flight Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 811f68f9-1bbb-592e-9b78-ae506a58b30c
+		summarizeBy: none
+		sourceColumn: flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1643db7f-ac67-5b72-b3d8-5a25c0ceecde
+		summarizeBy: none
+		sourceColumn: late_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predicted Late Count'
+		dataType: double
+		isHidden
+		lineageTag: 92dd2c93-f21d-5893-b533-fd1316904e67
+		summarizeBy: none
+		sourceColumn: predicted_late_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: b700b3b6-5ca7-56ef-9784-28d07a557e0a
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Group'
+		dataType: string
+		lineageTag: 4bf4f978-925f-51bc-9f92-2aae513bcd79
+		summarizeBy: none
+		sourceColumn: Risk Group
+		sortByColumn: 'Risk Group Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Risk Groups' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\fact_risk_groups.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"carrier", "risk_group", "flights", "late_flights", "predicted_late_flights", "model"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"carrier", type text}, {"risk_group", Int64.Type}, {"flights", Int64.Type}, {"late_flights", Int64.Type}, {"predicted_late_flights", type number}, {"model", type text}}, "en-US"),
+				    Labeled = Table.AddColumn(Typed, "Risk Group", each if [risk_group] = 1 then "1 lowest" else if [risk_group] = 10 then "10 highest" else Text.From([risk_group]), type text)
+				in
+				    Labeled
+
+	annotation PBI_ResultType = Table
+

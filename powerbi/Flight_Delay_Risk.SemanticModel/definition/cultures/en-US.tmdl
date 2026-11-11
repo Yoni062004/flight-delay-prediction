@@ -1,0 +1,200 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "key_measures.late_rate_by_hour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Late Rate by Hour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Selected airline": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.late_rate_by_hour_all_airlines": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Late Rate by Hour All Airlines"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "All airlines": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.actual_late_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Actual Late Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Actually late": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.predicted_late_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Predicted Late Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Predicted by the model": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.driver_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Driver Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Share of the model's reasoning": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.flights": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Flights"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Departures": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.late_arrival_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "Late Arrival Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Late arrivals": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "key_measures.ontime_arrival_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Key Measures",
+			          "ConceptualProperty": "On-Time Arrival Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "On-time arrivals": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "airport.airport_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Airport",
+			          "ConceptualProperty": "Airport Label"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Airport": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

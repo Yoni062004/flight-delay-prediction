@@ -1,0 +1,112 @@
+table 'Key Measures'
+	lineageTag: 674342cb-3fc0-526c-a746-77dff57b6ef2
+
+	/// Completed flights, September 2025 to August 2026. Cancelled and diverted flights are excluded.
+	measure Flights = SUM ( Flights[Flight Count] )
+		formatString: #,0
+		displayFolder: 1. Full year
+		lineageTag: 059026a4-d7b1-5241-ba2e-b897be57ee27
+
+	/// Flights that arrived 15 or more minutes after the scheduled time.
+	measure 'Late Flights' = SUM ( Flights[Late Count] )
+		formatString: #,0
+		displayFolder: 1. Full year
+		lineageTag: 122ecc72-97e7-535d-b481-a168e96b3fa2
+
+	/// Share of flights that arrived 15 or more minutes late.
+	measure 'Late Arrival Rate' = DIVIDE ( [Late Flights], [Flights] )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: 9b2f7f15-c53e-5363-a16f-e51ebe59f3ad
+
+	/// Share of flights that arrived less than 15 minutes late (the U.S. DOT on-time standard).
+	measure 'On-Time Arrival Rate' = IF ( NOT ISBLANK ( [Flights] ), 1 - [Late Arrival Rate] )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: ea17a124-22cd-5375-b99e-6100f4ba12aa
+
+	/// The late arrival rate for every airline together, ignoring the airline filter.
+	measure 'Late Arrival Rate All Airlines' = CALCULATE ( [Late Arrival Rate], REMOVEFILTERS ( Airline ) )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: 693f8bed-b7ed-5945-80f2-e41750c48697
+
+	/// On-time arrival rate minus the all-airline rate, in percentage points. Positive is better than average.
+	measure 'On-Time Gap vs All Airlines' = ( [Late Arrival Rate All Airlines] - [Late Arrival Rate] ) * 100
+		formatString: +0.0" pts";-0.0" pts";0.0" pts"
+		displayFolder: 1. Full year
+		lineageTag: 09d47be7-a14c-5d50-bfd7-49851bda1a8e
+
+	/// Late arrival rate, shown only for departure hours with at least 20,000 flights across all airlines.
+	measure 'Late Rate by Hour' = IF ( CALCULATE ( [Flights], REMOVEFILTERS ( Airline ), REMOVEFILTERS ( Airport ) ) >= 20000, [Late Arrival Rate] )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: 26b4b08c-e3ba-5680-87f5-618025a23059
+
+	/// The all-airline late arrival rate, shown only for busy departure hours.
+	measure 'Late Rate by Hour All Airlines' = IF ( CALCULATE ( [Flights], REMOVEFILTERS ( Airline ), REMOVEFILTERS ( Airport ) ) >= 20000, [Late Arrival Rate All Airlines] )
+		formatString: 0.0%
+		displayFolder: 1. Full year
+		lineageTag: d6485054-a642-57a9-8935-5b9e6b4512ea
+
+	/// Flights in the test months, July and August 2026.
+	measure 'Test Flights' = CALCULATE ( SUM ( 'Risk Groups'[Flight Count] ), 'Risk Groups'[Model] = "Timetable + aircraft" )
+		formatString: #,0
+		displayFolder: 2. Model (test months)
+		lineageTag: ea8ecddf-d733-535c-ae12-e79d8356ea4d
+
+	/// Share of test-month flights that really arrived late.
+	measure 'Actual Late Rate' = DIVIDE ( CALCULATE ( SUM ( 'Risk Groups'[Late Count] ), 'Risk Groups'[Model] = "Timetable + aircraft" ), [Test Flights] )
+		formatString: 0.0%
+		displayFolder: 2. Model (test months)
+		lineageTag: 9ccb6a4e-37b2-589b-8415-6e235c1084f0
+
+	/// The model's average predicted risk for the same flights.
+	measure 'Predicted Late Rate' = DIVIDE ( CALCULATE ( SUM ( 'Risk Groups'[Predicted Late Count] ), 'Risk Groups'[Model] = "Timetable + aircraft" ), [Test Flights] )
+		formatString: 0.0%
+		displayFolder: 2. Model (test months)
+		lineageTag: d65eedf5-2dc7-58ae-bfa2-bce4de9362ac
+
+	/// Late arrival rate among flights in the top 10% of risk scores.
+	measure 'Late Rate When Flagged High Risk' = CALCULATE ( [Actual Late Rate], 'Risk Groups'[Risk Group Number] = 10 )
+		formatString: 0.0%
+		displayFolder: 2. Model (test months)
+		lineageTag: 305a8034-531c-597a-b94b-a698441628ed
+
+	/// Late arrival rate among flights in the bottom 10% of risk scores.
+	measure 'Late Rate When Flagged Low Risk' = CALCULATE ( [Actual Late Rate], 'Risk Groups'[Risk Group Number] = 1 )
+		formatString: 0.0%
+		displayFolder: 2. Model (test months)
+		lineageTag: f03a9e10-ecb8-5527-99cd-5f5cb31a5c2a
+
+	/// How well the model ranks late flights above on-time ones. 0.5 is guessing and 1.0 is perfect.
+	measure 'Model ROC-AUC' = IF ( HASONEVALUE ( Airline[Carrier] ), CALCULATE ( MAX ( 'Model Scores'[ROC-AUC] ), 'Model Scores'[Model] = "Timetable + aircraft" ), CALCULATE ( MAX ( 'Overall Scores'[ROC-AUC] ), 'Overall Scores'[Model] = "Timetable + aircraft" ) )
+		formatString: 0.000
+		displayFolder: 2. Model (test months)
+		lineageTag: c5b1ed3e-47a1-5511-a725-c038a6343238
+
+	/// Share of the model's reasoning that comes from each group of inputs (SHAP).
+	measure 'Driver Share' = AVERAGEX ( VALUES ( Drivers[Carrier] ), CALCULATE ( SUM ( Drivers[Share] ) ) )
+		formatString: 0%
+		displayFolder: 3. What drives the risk
+		lineageTag: b85c7e11-407f-5872-a7eb-48f74276153c
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 5fba120e-ebf4-56d0-b1b9-85afe5d7ad3e
+		summarizeBy: none
+		sourceColumn: Placeholder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Key Measures' = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Placeholder = text], {})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

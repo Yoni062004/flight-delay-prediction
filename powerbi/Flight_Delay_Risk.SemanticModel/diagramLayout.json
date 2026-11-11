@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1284.169324917983,
+            "y": 226.8012138803573
+          },
+          "nodeIndex": "Key Measures",
+          "nodeLineageTag": "674342cb-3fc0-526c-a746-77dff57b6ef2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 408.832440770244,
+            "y": 249.568718924444
+          },
+          "nodeIndex": "Airline",
+          "nodeLineageTag": "2b72726b-f516-55ea-808b-11020dc6c7bd",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1050.169324917983,
+            "y": 84.57371183668522
+          },
+          "nodeIndex": "Airport",
+          "nodeLineageTag": "3a5ba06e-5cc2-5a62-aaad-6089a9eb3ac3",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 186.38616867028975,
+            "y": 22.187264983917771
+          },
+          "nodeIndex": "Drivers",
+          "nodeLineageTag": "c6c72108-3211-50c1-a47e-2a10a6e7ed1e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 764.83640782391524,
+            "y": 251.09076182865647
+          },
+          "nodeIndex": "Flights",
+          "nodeLineageTag": "d676ca98-b99f-5ee3-9497-2a1f60cf3790",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 234.49826313039807,
+            "y": 527.60242776071459
+          },
+          "nodeIndex": "Flights by Month",
+          "nodeLineageTag": "d9c3cd2d-98af-562c-811e-9c8fe88557d8",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 772.53863398750013,
+            "y": 502.98354102760158
+          },
+          "nodeIndex": "Hour",
+          "nodeLineageTag": "74d195c6-d90d-529a-af00-98abdc2666cb",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 250.89713968151943
+          },
+          "nodeIndex": "Model Scores",
+          "nodeLineageTag": "823ff642-1e5c-587d-be3f-39b3b066c574",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1568.169324917983,
+            "y": 264.8012138803573
+          },
+          "nodeIndex": "Overall Scores",
+          "nodeLineageTag": "be132989-2bc7-5190-ac12-357aa7c4829d",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 612.18563741911953,
+            "y": -50
+          },
+          "nodeIndex": "Risk Groups",
+          "nodeLineageTag": "f34b4488-c7b7-574f-ae0f-88ffbaf32ca7",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

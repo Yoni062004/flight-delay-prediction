@@ -1,0 +1,28 @@
+relationship 29202095-b889-5989-8925-91bb3bff0c07
+	fromColumn: Flights.Carrier
+	toColumn: Airline.Carrier
+
+relationship 78d2ba17-d904-5367-9751-987cc1088a4e
+	fromColumn: Flights.Origin
+	toColumn: Airport.Airport
+
+relationship 09bede50-2aa8-56ed-8741-450f8ad0c1e0
+	fromColumn: Flights.'Departure Hour'
+	toColumn: Hour.'Departure Hour'
+
+relationship 49546a6c-9655-5b2a-8d97-23ae261d5349
+	fromColumn: 'Flights by Month'.Carrier
+	toColumn: Airline.Carrier
+
+relationship 73bad127-bd17-5bb1-aba4-0c825982f291
+	fromColumn: 'Risk Groups'.Carrier
+	toColumn: Airline.Carrier
+
+relationship edadcd4f-dcee-510d-b7aa-b8b7a51a3c39
+	fromColumn: 'Model Scores'.Carrier
+	toColumn: Airline.Carrier
+
+relationship 9ec06e11-abed-5fcf-af10-fba01f6498e2
+	fromColumn: Drivers.Carrier
+	toColumn: Airline.Carrier
+

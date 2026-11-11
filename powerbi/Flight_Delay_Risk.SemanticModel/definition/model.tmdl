@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["ProjectFolder", "Airline", "Airport", "Hour", "Flights", "Flights by Month", "Risk Groups", "Model Scores", "Overall Scores", "Drivers", "Key Measures"]
+
+ref table Airline
+ref table Airport
+ref table Hour
+ref table Flights
+ref table 'Flights by Month'
+ref table 'Risk Groups'
+ref table 'Model Scores'
+ref table 'Overall Scores'
+ref table Drivers
+ref table 'Key Measures'
+
+ref cultureInfo en-US
+

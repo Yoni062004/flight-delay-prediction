@@ -1,0 +1,56 @@
+table 'Flights by Month'
+	lineageTag: d9c3cd2d-98af-562c-811e-9c8fe88557d8
+
+	column Carrier
+		dataType: string
+		isHidden
+		lineageTag: 8b4e64d3-18c0-5a5b-9577-ba4b72a10830
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 29e042ab-cd0d-5095-af0e-c7a2a2973e20
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Flight Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 93950d57-98d4-538f-a5b3-f669ce09030b
+		summarizeBy: none
+		sourceColumn: flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 04c3b829-6ecd-51e3-9be6-1b951b0f73e3
+		summarizeBy: none
+		sourceColumn: late_flights
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Flights by Month' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\fact_flights_by_month.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"carrier", "month_start", "flights", "late_flights"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"carrier", type text}, {"month_start", type date}, {"flights", Int64.Type}, {"late_flights", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

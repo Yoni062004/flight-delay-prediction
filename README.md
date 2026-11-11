@@ -89,6 +89,20 @@ SHAP can also explain one flight at a time. The model gave this Sunday evening f
 
 SHAP explains what the model learned. These are patterns, not proven causes.
 
+## Power BI report
+
+One page, built for someone who runs flights rather than models. Pick an airline (it opens on Delta) and every number, chart and map follows.
+
+![Power BI page: arrival delay risk](reports/figures/powerbi_page.jpg)
+
+- **Top row:** flights flown, on-time arrivals, the gap to all airlines, how often flights flagged as high risk really arrive late, and the model's ranking score.
+- **Late arrivals build through the day:** the airline against all airlines, by scheduled departure hour.
+- **Where the late arrivals are:** departure airports, sized by flights and shaded by late rate.
+- **Risk groups:** what the model predicted against what happened, in the test months.
+- **What drives the risk score:** the share of the model's reasoning from each group of inputs.
+
+The report is a Power BI Project in [`powerbi/`](powerbi/). To open it, run `src\export_powerbi.py`, then open `powerbi\Flight_Delay_Risk.pbip` in Power BI Desktop and refresh. It reads the small CSV files in `powerbi/data/` through a `ProjectFolder` parameter, which holds the path to this repository on my machine; change it under Transform data if yours differs.
+
 ## Two traps I had to handle
 
 **1. Aircraft swaps leak the answer.** BTS records the aircraft that *actually flew* each flight. When a plane runs late, the airline often swaps in another one. The swapped-in aircraft then shows an impossible schedule: its previous flight was due to land at a different airport, or after this flight's departure. That pattern covers 5% of flights, and 57% of them arrive late. A model that sees it is reading the result of the delay, not predicting it.
@@ -140,6 +154,7 @@ src/                the pipeline code
 models/             saved LightGBM models (not tracked)
 reports/            scores (metrics.csv) and feature importance
 reports/figures/    charts
+powerbi/            Power BI project and the small tables it reads
 ```
 
 ## Data sources

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Flight_Delay_Risk"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1640d53e-3f6f-5630-a372-00cb4906953b"
+  }
+}

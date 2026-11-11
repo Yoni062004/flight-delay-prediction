@@ -1,0 +1,51 @@
+table Drivers
+	lineageTag: c6c72108-3211-50c1-a47e-2a10a6e7ed1e
+
+	column Carrier
+		dataType: string
+		isHidden
+		lineageTag: b40b80aa-a8f5-5f00-b77c-f327aed53b2c
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver
+		dataType: string
+		lineageTag: f2951e42-4aca-5d6e-a46d-de60462b258a
+		summarizeBy: none
+		sourceColumn: feature_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share
+		dataType: double
+		isHidden
+		lineageTag: 250faf43-3aec-572b-af8c-dc719c80ac39
+		summarizeBy: none
+		sourceColumn: share
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Flights in Sample'
+		dataType: int64
+		formatString: 0
+		lineageTag: b1538869-dcf0-5776-a821-52d17ad98091
+		summarizeBy: none
+		sourceColumn: flights_in_sample
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Drivers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\fact_shap_groups.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"carrier", "feature_group", "share", "flights_in_sample"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"carrier", type text}, {"feature_group", type text}, {"share", type number}, {"flights_in_sample", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

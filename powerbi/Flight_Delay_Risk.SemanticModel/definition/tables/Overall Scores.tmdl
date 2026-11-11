@@ -1,0 +1,65 @@
+table 'Overall Scores'
+	lineageTag: be132989-2bc7-5190-ac12-357aa7c4829d
+
+	column Model
+		dataType: string
+		lineageTag: 0f2eed46-81d1-5edc-82ab-45c4ffad4069
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Test Flights'
+		dataType: int64
+		formatString: 0
+		lineageTag: 55f15154-9786-58fb-8238-e0f3a32ee688
+		summarizeBy: none
+		sourceColumn: flights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Rate'
+		dataType: double
+		lineageTag: 61cda9c2-3d1a-5093-b8c8-e03d41891bcc
+		summarizeBy: none
+		sourceColumn: late_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROC-AUC
+		dataType: double
+		lineageTag: 9b81abd2-b6b7-59ae-8aaa-bf5f7f6b36e1
+		summarizeBy: none
+		sourceColumn: roc_auc
+
+		annotation SummarizationSetBy = Automatic
+
+	column PR-AUC
+		dataType: double
+		lineageTag: 31468d4e-6212-5465-99e0-3fead3196b76
+		summarizeBy: none
+		sourceColumn: pr_auc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Rate in Riskiest 10%'
+		dataType: double
+		lineageTag: b664d797-d4b0-546c-b69e-f43b767fa0b1
+		summarizeBy: none
+		sourceColumn: late_rate_in_riskiest_10pct
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Overall Scores' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ProjectFolder & "powerbi\data\fact_model_scores_overall.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Selected = Table.SelectColumns(Promoted, {"model", "flights", "late_rate", "roc_auc", "pr_auc", "late_rate_in_riskiest_10pct"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"model", type text}, {"flights", Int64.Type}, {"late_rate", type number}, {"roc_auc", type number}, {"pr_auc", type number}, {"late_rate_in_riskiest_10pct", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+
