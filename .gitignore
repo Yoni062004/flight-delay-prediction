@@ -1,8 +1,10 @@
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-data/
-models/
+/data/
+/models/
 *.pbix
 .DS_Store
 Thumbs.db
+# Power BI project: local settings and cache
+**/.pbi/

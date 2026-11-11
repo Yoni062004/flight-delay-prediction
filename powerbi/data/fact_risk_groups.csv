@@ -1,0 +1,241 @@
+carrier,risk_group,flights,late_flights,predicted_late_flights,model
+AA,1,8725,712,665.3,Timetable only
+AA,2,14316,1691,1510.0,Timetable only
+AA,3,14610,2187,1923.0,Timetable only
+AA,4,14499,2769,2258.9,Timetable only
+AA,5,15615,3640,2808.0,Timetable only
+AA,6,16149,4382,3334.8,Timetable only
+AA,7,18008,5822,4274.7,Timetable only
+AA,8,21538,8408,5914.5,Timetable only
+AA,9,22890,10261,7426.0,Timetable only
+AA,10,23065,12342,9507.7,Timetable only
+AS,1,3094,199,233.6,Timetable only
+AS,2,5334,554,568.2,Timetable only
+AS,3,7528,1112,990.4,Timetable only
+AS,4,7748,1479,1207.0,Timetable only
+AS,5,8477,1858,1523.0,Timetable only
+AS,6,7846,1994,1616.4,Timetable only
+AS,7,7528,2293,1779.6,Timetable only
+AS,8,6298,1965,1725.3,Timetable only
+AS,9,5462,1993,1764.4,Timetable only
+AS,10,2832,1364,1145.1,Timetable only
+B6,1,1392,123,106.3,Timetable only
+B6,2,2672,329,283.9,Timetable only
+B6,3,2978,476,391.2,Timetable only
+B6,4,3080,673,480.5,Timetable only
+B6,5,3199,804,578.3,Timetable only
+B6,6,4066,1283,838.7,Timetable only
+B6,7,4430,1576,1051.8,Timetable only
+B6,8,5388,2208,1482.2,Timetable only
+B6,9,7008,3352,2282.7,Timetable only
+B6,10,8814,5032,3739.7,Timetable only
+DL,1,20565,1659,1505.4,Timetable only
+DL,2,25523,3254,2696.8,Timetable only
+DL,3,25591,4418,3360.3,Timetable only
+DL,4,23971,5217,3728.6,Timetable only
+DL,5,21530,5474,3865.6,Timetable only
+DL,6,19042,5613,3918.1,Timetable only
+DL,7,16237,5422,3833.6,Timetable only
+DL,8,13378,4988,3659.5,Timetable only
+DL,9,9622,4093,3099.4,Timetable only
+DL,10,5779,2960,2335.3,Timetable only
+F9,1,1128,113,87.4,Timetable only
+F9,2,1792,213,189.5,Timetable only
+F9,3,2672,470,352.1,Timetable only
+F9,4,3381,714,526.2,Timetable only
+F9,5,4076,1018,734.6,Timetable only
+F9,6,4611,1376,952.7,Timetable only
+F9,7,5141,1729,1219.3,Timetable only
+F9,8,5590,2184,1532.6,Timetable only
+F9,9,5601,2601,1815.0,Timetable only
+F9,10,5360,3057,2246.6,Timetable only
+G4,1,2233,179,157.3,Timetable only
+G4,2,1929,197,203.0,Timetable only
+G4,3,1749,210,228.8,Timetable only
+G4,4,1491,224,232.0,Timetable only
+G4,5,1616,338,290.8,Timetable only
+G4,6,1960,481,404.5,Timetable only
+G4,7,2612,783,620.1,Timetable only
+G4,8,2889,1028,792.6,Timetable only
+G4,9,2917,1184,944.5,Timetable only
+G4,10,3714,2035,1701.9,Timetable only
+MQ,1,3932,248,304.9,Timetable only
+MQ,2,7587,685,801.9,Timetable only
+MQ,3,7729,961,1016.9,Timetable only
+MQ,4,7804,1265,1214.6,Timetable only
+MQ,5,8233,1580,1482.6,Timetable only
+MQ,6,7493,1669,1541.6,Timetable only
+MQ,7,6184,1740,1463.6,Timetable only
+MQ,8,5108,1652,1395.2,Timetable only
+MQ,9,3244,1190,1038.6,Timetable only
+MQ,10,740,311,286.7,Timetable only
+OH,1,848,112,68.6,Timetable only
+OH,2,2272,318,241.3,Timetable only
+OH,3,3254,546,429.5,Timetable only
+OH,4,3997,811,625.3,Timetable only
+OH,5,4431,1183,797.4,Timetable only
+OH,6,4402,1354,908.7,Timetable only
+OH,7,5014,1894,1187.8,Timetable only
+OH,8,5048,2070,1381.0,Timetable only
+OH,9,4682,2149,1514.4,Timetable only
+OH,10,5329,2953,2255.5,Timetable only
+OO,1,12676,1072,905.9,Timetable only
+OO,2,15056,1831,1594.6,Timetable only
+OO,3,15799,2382,2080.5,Timetable only
+OO,4,17395,3183,2707.5,Timetable only
+OO,5,16676,3581,2997.5,Timetable only
+OO,6,16372,4125,3371.9,Timetable only
+OO,7,15098,4431,3570.5,Timetable only
+OO,8,14344,4688,3931.8,Timetable only
+OO,9,13563,5053,4385.4,Timetable only
+OO,10,12869,5977,5295.5,Timetable only
+UA,1,15933,1280,1147.3,Timetable only
+UA,2,16956,2072,1784.1,Timetable only
+UA,3,16323,2815,2147.3,Timetable only
+UA,4,16398,3528,2549.3,Timetable only
+UA,5,16306,4267,2928.9,Timetable only
+UA,6,15756,4842,3249.6,Timetable only
+UA,7,15386,5531,3637.6,Timetable only
+UA,8,12225,5118,3345.2,Timetable only
+UA,9,10963,5162,3539.3,Timetable only
+UA,10,8957,5070,3668.6,Timetable only
+WN,1,47050,2927,2918.7,Timetable only
+WN,2,20935,2402,2187.1,Timetable only
+WN,3,15456,2471,2030.6,Timetable only
+WN,4,14611,2958,2271.5,Timetable only
+WN,5,14451,3721,2600.1,Timetable only
+WN,6,16872,4948,3486.7,Timetable only
+WN,7,18486,6606,4385.3,Timetable only
+WN,8,21564,8917,5932.5,Timetable only
+WN,9,28353,13759,9214.3,Timetable only
+WN,10,39838,23465,16909.7,Timetable only
+YX,1,3049,260,242.0,Timetable only
+YX,2,6252,677,661.1,Timetable only
+YX,3,6936,1008,912.7,Timetable only
+YX,4,6249,1153,969.4,Timetable only
+YX,5,6015,1230,1081.3,Timetable only
+YX,6,6055,1474,1247.7,Timetable only
+YX,7,6500,1921,1542.0,Timetable only
+YX,8,7255,2418,1988.8,Timetable only
+YX,9,6319,2451,2036.7,Timetable only
+YX,10,3328,1519,1333.5,Timetable only
+AA,1,8896,665,625.4,Timetable + aircraft
+AA,2,13931,1472,1405.2,Timetable + aircraft
+AA,3,14696,2186,1868.6,Timetable + aircraft
+AA,4,15472,2902,2345.5,Timetable + aircraft
+AA,5,16323,3703,2896.1,Timetable + aircraft
+AA,6,17245,4663,3546.2,Timetable + aircraft
+AA,7,18531,6054,4424.0,Timetable + aircraft
+AA,8,19949,7718,5578.4,Timetable + aircraft
+AA,9,22169,10283,7399.0,Timetable + aircraft
+AA,10,22203,12568,9700.8,Timetable + aircraft
+AS,1,3321,202,234.1,Timetable + aircraft
+AS,2,6145,621,622.9,Timetable + aircraft
+AS,3,7587,1062,965.3,Timetable + aircraft
+AS,4,8171,1538,1239.5,Timetable + aircraft
+AS,5,8251,1808,1460.6,Timetable + aircraft
+AS,6,7480,1959,1536.9,Timetable + aircraft
+AS,7,6739,1975,1604.2,Timetable + aircraft
+AS,8,5961,1986,1659.9,Timetable + aircraft
+AS,9,5168,1984,1719.5,Timetable + aircraft
+AS,10,3324,1676,1403.7,Timetable + aircraft
+B6,1,1239,109,89.2,Timetable + aircraft
+B6,2,2426,285,245.8,Timetable + aircraft
+B6,3,2965,465,376.2,Timetable + aircraft
+B6,4,3185,661,483.9,Timetable + aircraft
+B6,5,3541,806,628.7,Timetable + aircraft
+B6,6,4122,1307,848.6,Timetable + aircraft
+B6,7,4694,1666,1123.3,Timetable + aircraft
+B6,8,5616,2394,1570.6,Timetable + aircraft
+B6,9,6857,3318,2290.2,Timetable + aircraft
+B6,10,8382,4845,3696.0,Timetable + aircraft
+DL,1,21003,1513,1403.8,Timetable + aircraft
+DL,2,25215,3093,2541.5,Timetable + aircraft
+DL,3,25366,4369,3215.4,Timetable + aircraft
+DL,4,23418,4904,3545.8,Timetable + aircraft
+DL,5,21599,5405,3824.0,Timetable + aircraft
+DL,6,18861,5486,3873.3,Timetable + aircraft
+DL,7,16153,5461,3842.7,Timetable + aircraft
+DL,8,13076,5006,3641.6,Timetable + aircraft
+DL,9,10221,4463,3394.8,Timetable + aircraft
+DL,10,6326,3398,2695.1,Timetable + aircraft
+F9,1,1194,105,86.5,Timetable + aircraft
+F9,2,2192,284,222.5,Timetable + aircraft
+F9,3,2807,471,357.6,Timetable + aircraft
+F9,4,3322,674,505.3,Timetable + aircraft
+F9,5,4067,988,722.9,Timetable + aircraft
+F9,6,4652,1375,957.3,Timetable + aircraft
+F9,7,5256,1858,1255.7,Timetable + aircraft
+F9,8,5476,2097,1529.6,Timetable + aircraft
+F9,9,5427,2589,1808.8,Timetable + aircraft
+F9,10,4959,3034,2161.1,Timetable + aircraft
+G4,1,2079,164,138.1,Timetable + aircraft
+G4,2,1848,175,185.7,Timetable + aircraft
+G4,3,1812,228,229.6,Timetable + aircraft
+G4,4,1643,261,248.8,Timetable + aircraft
+G4,5,1950,417,345.5,Timetable + aircraft
+G4,6,2298,567,471.9,Timetable + aircraft
+G4,7,2614,790,624.5,Timetable + aircraft
+G4,8,2654,918,740.4,Timetable + aircraft
+G4,9,2417,954,804.4,Timetable + aircraft
+G4,10,3795,2185,1918.9,Timetable + aircraft
+MQ,1,5726,322,391.3,Timetable + aircraft
+MQ,2,7352,670,739.9,Timetable + aircraft
+MQ,3,7168,964,909.7,Timetable + aircraft
+MQ,4,7366,1208,1116.4,Timetable + aircraft
+MQ,5,7342,1420,1301.6,Timetable + aircraft
+MQ,6,7004,1574,1437.8,Timetable + aircraft
+MQ,7,6232,1687,1485.0,Timetable + aircraft
+MQ,8,5181,1661,1442.6,Timetable + aircraft
+MQ,9,3493,1249,1153.4,Timetable + aircraft
+MQ,10,1190,546,491.4,Timetable + aircraft
+OH,1,1066,119,76.7,Timetable + aircraft
+OH,2,2376,327,241.2,Timetable + aircraft
+OH,3,3075,505,391.8,Timetable + aircraft
+OH,4,3934,775,597.5,Timetable + aircraft
+OH,5,4409,1168,783.5,Timetable + aircraft
+OH,6,4497,1410,924.1,Timetable + aircraft
+OH,7,4773,1726,1140.1,Timetable + aircraft
+OH,8,4919,2040,1372.6,Timetable + aircraft
+OH,9,4741,2213,1581.3,Timetable + aircraft
+OH,10,5487,3107,2465.2,Timetable + aircraft
+OO,1,13593,1047,906.4,Timetable + aircraft
+OO,2,16012,1838,1612.4,Timetable + aircraft
+OO,3,15727,2277,1994.5,Timetable + aircraft
+OO,4,15322,2653,2321.4,Timetable + aircraft
+OO,5,15028,3216,2663.4,Timetable + aircraft
+OO,6,15304,3867,3149.1,Timetable + aircraft
+OO,7,15849,4415,3779.9,Timetable + aircraft
+OO,8,15269,4961,4258.7,Timetable + aircraft
+OO,9,14497,5725,4836.4,Timetable + aircraft
+OO,10,13247,6324,5769.1,Timetable + aircraft
+UA,1,13989,988,951.5,Timetable + aircraft
+UA,2,16466,1904,1657.9,Timetable + aircraft
+UA,3,16930,2827,2150.5,Timetable + aircraft
+UA,4,17579,3681,2664.8,Timetable + aircraft
+UA,5,16525,4214,2925.7,Timetable + aircraft
+UA,6,16062,5019,3298.2,Timetable + aircraft
+UA,7,14643,5251,3489.4,Timetable + aircraft
+UA,8,13165,5382,3673.0,Timetable + aircraft
+UA,9,11485,5556,3817.7,Timetable + aircraft
+UA,10,8359,4863,3562.8,Timetable + aircraft
+WN,1,45648,2692,2638.4,Timetable + aircraft
+WN,2,20328,2150,2030.0,Timetable + aircraft
+WN,3,15733,2405,1992.9,Timetable + aircraft
+WN,4,15112,2886,2290.4,Timetable + aircraft
+WN,5,15393,3660,2729.6,Timetable + aircraft
+WN,6,16779,4937,3453.1,Timetable + aircraft
+WN,7,18755,6595,4482.6,Timetable + aircraft
+WN,8,22596,9281,6328.8,Timetable + aircraft
+WN,9,27627,13424,9253.5,Timetable + aircraft
+WN,10,39645,24144,17988.9,Timetable + aircraft
+YX,1,2871,222,213.6,Timetable + aircraft
+YX,2,6333,719,640.0,Timetable + aircraft
+YX,3,6759,978,858.2,Timetable + aircraft
+YX,4,6100,1048,923.5,Timetable + aircraft
+YX,5,6197,1281,1097.6,Timetable + aircraft
+YX,6,6320,1533,1299.6,Timetable + aircraft
+YX,7,6385,1850,1524.9,Timetable + aircraft
+YX,8,6763,2267,1889.1,Timetable + aircraft
+YX,9,6522,2502,2169.1,Timetable + aircraft
+YX,10,3708,1711,1553.9,Timetable + aircraft

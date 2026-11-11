@@ -1,0 +1,61 @@
+carrier,feature_group,share,flights_in_sample
+AA,Time of day and weekday,0.3835,7067
+AA,Route and airline,0.2228,7067
+AA,Airport crowding,0.1231,7067
+AA,Aircraft rotation,0.1884,7067
+AA,Aircraft type and age,0.0822,7067
+AS,Time of day and weekday,0.2756,2515
+AS,Route and airline,0.2753,2515
+AS,Airport crowding,0.1602,2515
+AS,Aircraft rotation,0.2159,2515
+AS,Aircraft type and age,0.073,2515
+B6,Time of day and weekday,0.3508,1777
+B6,Route and airline,0.2907,1777
+B6,Airport crowding,0.1113,1777
+B6,Aircraft rotation,0.1447,1777
+B6,Aircraft type and age,0.1026,1777
+DL,Time of day and weekday,0.3088,50000
+DL,Route and airline,0.2698,50000
+DL,Airport crowding,0.1039,50000
+DL,Aircraft rotation,0.2096,50000
+DL,Aircraft type and age,0.1079,50000
+F9,Time of day and weekday,0.3295,1668
+F9,Route and airline,0.2602,1668
+F9,Airport crowding,0.1421,1668
+F9,Aircraft rotation,0.1911,1668
+F9,Aircraft type and age,0.0772,1668
+G4,Time of day and weekday,0.2996,954
+G4,Route and airline,0.2912,954
+G4,Airport crowding,0.1888,954
+G4,Aircraft rotation,0.1581,954
+G4,Aircraft type and age,0.0623,954
+MQ,Time of day and weekday,0.3139,2443
+MQ,Route and airline,0.2258,2443
+MQ,Airport crowding,0.0747,2443
+MQ,Aircraft rotation,0.2516,2443
+MQ,Aircraft type and age,0.1338,2443
+OH,Time of day and weekday,0.3108,1571
+OH,Route and airline,0.2488,1571
+OH,Airport crowding,0.0682,1571
+OH,Aircraft rotation,0.2259,1571
+OH,Aircraft type and age,0.1464,1571
+OO,Time of day and weekday,0.2414,6175
+OO,Route and airline,0.3064,6175
+OO,Airport crowding,0.0899,6175
+OO,Aircraft rotation,0.207,6175
+OO,Aircraft type and age,0.1553,6175
+UA,Time of day and weekday,0.325,6027
+UA,Route and airline,0.2883,6027
+UA,Airport crowding,0.1504,6027
+UA,Aircraft rotation,0.164,6027
+UA,Aircraft type and age,0.0724,6027
+WN,Time of day and weekday,0.3807,9812
+WN,Route and airline,0.1868,9812
+WN,Airport crowding,0.1261,9812
+WN,Aircraft rotation,0.2413,9812
+WN,Aircraft type and age,0.0652,9812
+YX,Time of day and weekday,0.3445,2406
+YX,Route and airline,0.2204,2406
+YX,Airport crowding,0.0901,2406
+YX,Aircraft rotation,0.2137,2406
+YX,Aircraft type and age,0.1313,2406

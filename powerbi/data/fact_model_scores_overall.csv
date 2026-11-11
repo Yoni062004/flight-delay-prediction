@@ -1,0 +1,5 @@
+model,flights,late_rate,roc_auc,pr_auc,late_rate_in_riskiest_10pct
+Always on time,1206245,0.2761,0.5,0.2761,0.2761
+Logistic regression,1206245,0.2761,0.6888,0.4312,0.5032
+Timetable only,1206245,0.2761,0.7044,0.4614,0.5479
+Timetable + aircraft,1206245,0.2761,0.7134,0.4762,0.5671

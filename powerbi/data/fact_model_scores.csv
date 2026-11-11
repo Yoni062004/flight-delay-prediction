@@ -1,0 +1,25 @@
+carrier,model,flights,late_rate,roc_auc,pr_auc
+AA,Timetable only,169415,0.3082,0.6938,0.4743
+AS,Timetable only,62147,0.2383,0.653,0.3652
+B6,Timetable only,43027,0.3685,0.6885,0.5282
+DL,Timetable only,181238,0.2378,0.6725,0.3769
+F9,Timetable only,39352,0.3424,0.6722,0.5013
+G4,Timetable only,23110,0.2881,0.7202,0.5028
+MQ,Timetable only,58054,0.1947,0.6637,0.3069
+OH,Timetable only,39277,0.3409,0.6693,0.493
+OO,Timetable only,149848,0.2424,0.6686,0.3811
+UA,Timetable only,145203,0.2733,0.6999,0.4532
+WN,Timetable only,237616,0.3037,0.7591,0.5454
+YX,Timetable only,57958,0.2435,0.6652,0.3722
+AA,Timetable + aircraft,169415,0.3082,0.7067,0.496
+AS,Timetable + aircraft,62147,0.2383,0.6701,0.3825
+B6,Timetable + aircraft,43027,0.3685,0.6932,0.5401
+DL,Timetable + aircraft,181238,0.2378,0.6839,0.3922
+F9,Timetable + aircraft,39352,0.3424,0.6866,0.5238
+G4,Timetable + aircraft,23110,0.2881,0.7258,0.5264
+MQ,Timetable + aircraft,58054,0.1947,0.6719,0.3175
+OH,Timetable + aircraft,39277,0.3409,0.6781,0.504
+OO,Timetable + aircraft,149848,0.2424,0.6827,0.3952
+UA,Timetable + aircraft,145203,0.2733,0.7045,0.4607
+WN,Timetable + aircraft,237616,0.3037,0.7675,0.5639
+YX,Timetable + aircraft,57958,0.2435,0.6676,0.3771
