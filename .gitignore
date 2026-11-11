@@ -8,3 +8,5 @@ __pycache__/
 Thumbs.db
 # Power BI project: local settings and cache
 **/.pbi/
+# Working notes for the AI assistant: kept on this PC, not published
+CLAUDE.md
