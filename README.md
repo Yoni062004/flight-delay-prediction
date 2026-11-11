@@ -146,7 +146,7 @@ reports/figures/    charts
 
 - [BTS Reporting Carrier On-Time Performance](https://www.transtats.bts.gov/), U.S. Bureau of Transportation Statistics
 - [FAA Releasable Aircraft Database](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download), U.S. Federal Aviation Administration. Only the registration, model and build year are used; owner details are never read.
-- [OurAirports](https://ourairports.com/data/), a public-domain list of the world's airports, for airport names and locations.
+- [OurAirports](https://davidmegginson.github.io/ourairports-data/), a public-domain list of the world's airports, for airport names and locations.
 
 ## Tools
 
